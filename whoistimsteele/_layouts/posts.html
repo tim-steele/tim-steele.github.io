@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include head.html %}
+
+    <body>
+        <section id="main">
+            {% include profile.html %}
+            <section id="content" class="post">
+                <article class="blog-post">
+                    <ul class="post-attributes clear">
+                        <li class="date">{{ page.date | date: "%B %-d, %Y" }}</li>
+                    </ul>
+                    <h1>{{ page.title }}</h1>
+                    {% if page.title %}
+                    <div class='post-banner'>
+                        <img src="/img/banners/{{page.banner}}" alt="{{page.title}}" />
+                    </div>
+                    {% endif %}
+                    {{ content }}
+                </article>
+
+                {% if page.comments %}
+                <div id="disqus_thread"></div>
+                <script>
+                    var disqus_config = function () {
+                        this.page.url = "{{ site.url}}{{ page.url }}/";
+                        this.page.identifier = "{{ page.slug }}";
+                    };
+
+                    (function() {
+                        var d = document, s = d.createElement('script');
+                        s.src = 'https://whoistimsteele-com.disqus.com/embed.js';
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                {% endif %}
+            </section>
+        </section>
+    </body>
+
+    {% include foot.html %}
+</html>

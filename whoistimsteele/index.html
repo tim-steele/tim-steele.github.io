@@ -1,0 +1,18 @@
+---
+layout: default
+---
+
+<!-- POSTS -->
+
+{% for post in paginator.posts %}
+
+    <article class="blog-post">
+        <ul class="post-attributes clear">
+            <li class="date">{{ site.time | date: "%B %-d, %Y" }}</li>
+        </ul>
+        <h1><a href="{{ post.url }}/" title="{{ post.title }}">{{ post.title }}</a></h1>
+        {{ post.excerpt }}
+        <a class="keep-reading" href="{{ post.url }}/" title="Keep reading {{ post.title }}">keep reading</a>
+    </article>
+
+{% endfor %}
